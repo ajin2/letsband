@@ -183,7 +183,7 @@ public class BoardDBBean {
 		}
 	}
 
-	// 사용자가인지 아닌지 판단하는 Query Method
+	// �궗�슜�옄媛��씤吏� �븘�땶吏� �뙋�떒�븯�뒗 Query Method
 	public int check(String id) {
 		int result = 0;
 		Connection con = null;
@@ -227,5 +227,8 @@ public class BoardDBBean {
 		}
 		return result;
 	}
+	
+	
+
 
 }
