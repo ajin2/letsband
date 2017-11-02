@@ -28,7 +28,7 @@ var delete_ok_error = "회원탈퇴가 성공적으로 완료되었습니다. \n
 var deleteconfirm = "회원을 탈퇴하시겠습니까?";
 var returnValue = "false";
 
-var loginpleaseerror = "로그인 후에 이용한 서비스 입니다. \n로그인 후 이용해주세요";
+
 
 function erroralert(msg){
 	alert(msg);
