@@ -18,54 +18,6 @@
 
 <h2> 파일 다운로드 </h2>
 
-<%
-	String originName = request.getParameter( "originName" );
-	String systemName = request.getParameter( "systemName" );
-	originName = URLDecoder.decode( originName, "utf-8" );
-	systemName = URLDecoder.decode( systemName, "utf-8" );
-%>
-
-파일이름 : <%=originName%> <br>
-저장이름 : <%=systemName%> <br>
-
-<%
-	out.clear();
-	out = pageContext.pushBody();
-	String path = application.getRealPath( "/save" );
-	String fileName = path + "/" + systemName;
-	
-	BufferedInputStream bis 
-		= new BufferedInputStream( new FileInputStream( fileName ) );
-	
-	BufferedOutputStream bos
-		= new BufferedOutputStream( response.getOutputStream() );
-	
-	response.setContentType( "text/unknown" );
-	response.setHeader( "content-disposition", 
-		"attachment;filename=" 
-		+ URLEncoder.encode( originName, "utf-8" ) + ";" );
-	
-	byte buffer[] = new byte[1024];
-	int length = 0;
-	while( ( length = bis.read( buffer, 0, buffer.length ) ) != -1 ) {
-		bos.write( buffer, 0, length );
-	}
-	
-	bis.close();
-	bos.close();
-	
-%>
-
-
-
-
-
-
-
-
-
-
-
-
-
+파일이름 : ${originName} <br>
+저장이름 : ${systemName} <br>
 
