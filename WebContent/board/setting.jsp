@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -39,4 +40,9 @@
 	<c:set var="btn_del" value = "삭제"/>
 	<c:set var="btn_del_cancel" value = "삭제취소"/>
 	<c:set var="btn_mod" value = "수정"/>
+
+	<c:set var="str_file" value="파일" />
+	<c:set var="str_fileadd" value="파일추가" />
+	<c:set var="str_filedel" value="파일삭제" />
+	<c:set var="str_download" value="다운로드"/>
 	<c:set var="btn_mod_cancel" value = "수정취소"/>
