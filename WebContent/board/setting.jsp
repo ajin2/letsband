@@ -29,6 +29,7 @@
 	<c:set var="str_email" value = "이메일"/>
 	<c:set var="str_content" value = "글내용"/>
 	<c:set var="str_passwd" value = "비밀번호"/>
+	<c:set var="str_download" value = "다운로드"/>
 	
 	<c:set var="btn_write" value = "작성"/>
 	<c:set var="btn_cancel" value = "취소"/>
