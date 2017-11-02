@@ -37,7 +37,7 @@
 				</li>
 				
 				<li><a>
-				      <input type="image" src="${img}gather.jpg" style="height:40px; width:130px;" onclick="location='BandBoard_gatherForm.do'">
+				      <input type="image" src="${img}gather.jpg" style="height:40px; width:130px;" onclick="location='BandBoard_gatherPro.do'">
 				      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				   </a>
 				</li>

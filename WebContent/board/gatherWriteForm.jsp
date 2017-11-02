@@ -12,8 +12,14 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div class="container">
-    <form action="/updateProc" method="post">
-    <h2>게시글 쓰기</h2>
+    <form action="" method="post">
+
+    <h2>${page_write }</h2>
+
+      <div class="form-group">
+        <label for="subject">${str_writer}</label>
+        &nbsp;${memberDto.id}	
+      </div>
       <div class="form-group">
         <label for="subject">${str_subject}</label>
         <input type="text" class="form-control" id="subject" name="subject" value="">
@@ -28,6 +34,6 @@
       <!--<input type="hidden" name="bno" value=""/> --><br>
       <button type="submit" class="btn btn-primary">글쓰기</button>
       <button type="reset" class="btn btn-primary">${btn_cancel}</button>
-      
+
     </form>
 </div>

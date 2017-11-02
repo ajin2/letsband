@@ -29,7 +29,7 @@ int count = 0;				// 전체글수
 		int pageCount = 0;			// 페이지의 개수
 	
 		BoardDBBean boardDao = BoardDBBean.getInstance();
-		count = boardDao.getCount();
+		count = boardDao.getCount(1);
 		
 		request.setAttribute( "count", count );
 		
