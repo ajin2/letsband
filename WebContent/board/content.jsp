@@ -11,22 +11,30 @@
 
 <h2> ${page_content}</h2>
 
-<table>
+<table border="1">
 	<tr>
-		<th> ${str_writer} </th>
-		<td align="center"> 
+		<th style="width:5%"> ${str_writer} </th>
+		<td style="width:10%" align="center"> 
 			writer <!-- 작성자 관리자랑 유저랑 비교해야함 -->
 		</td>
-		<th> ${str_readcount} </th>
-		<td> ${boardDto.readcount} </td>
+		<th style="width:5%"> ${str_readcount} </th>
+		<td style="width:10%" align='center'> ${boardDto.readcount} </td>
 	</tr>
 	<tr>
 		<th> ${str_reg_date} </th>
-		<td align="center">
+		<td colspan="3">
 			<fmt:formatDate value="${boardDto.reg_date}" 
 				type="both" pattern="yyyy-MM-dd HH:mm"/>
 		</td>
 	</tr>
+	
+	<tr>
+		<th > ${str_img} </th>
+		<td colspan="3">
+			
+		</td>
+	</tr>
+	
 	<tr>
 		<th> ${str_subject} </th>
 		<td colspan="3">
@@ -38,5 +46,16 @@
 		<td colspan="3">
 			<pre>${boardDto.content}</pre>
 		</td>
+	</tr>
+	
+	<tr>
+		<th colspan='4'>
+			<input class='inputbutton' type='button' value="${btn_modify}"
+				onclick="location=''">
+			<input class='inputbutton' type='button' value="${btn_delete}"
+				onclick="location=''">
+			<input class='inputbutton' type='button' value="${btn_list}"
+				onclick="location=''">
+		</th>
 	</tr>
 </table>
