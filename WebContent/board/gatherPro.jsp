@@ -12,6 +12,9 @@
 </c:if>
 
 <!-- adminId -->
+<c:if test="${sessionScope.memId != null}">
+	<c:redirect url="BandBoard_gatherForm.do"/>
+</c:if>
 	
 
 
@@ -19,8 +22,13 @@
 <!-- null -->
 <c:if test="${sessionScope.memId == null or sessionScope.memId == ''}">
 	<script type="text/javascript">
-		<!--
-		erroralert( signupplease );
-		//-->
-	</script>
+        <!--
+           var returnValue = confirm(loginpleaseerror);
+           if(returnValue == true){
+              window.location.href = "BandBoard_main.do";
+           } else {
+              window.location.href = "BandBoard_main.do";
+           }
+        -->
+        </script>
 </c:if>
