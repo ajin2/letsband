@@ -19,7 +19,7 @@
 		<!-- // 비회원  > alert 띄운 후 로그인 OR 회원가입 페이지로 이동-->
         <script type="text/javascript">
         <!--
-	        var returnValue = confirm(nullerror);
+	        var returnValue = confirm(loginpleaseerror);
 	    	if(returnValue == true){
 	    		window.location.href = "BandBoard_main.do";
 	    	} else {
@@ -59,38 +59,59 @@
 				</tr>
 				<tr>
 					<td align="center" colspan="2"> 
-						프로그램 사용법 내용이 들어갈 자리임
+						&nbsp;
 					</td>
 				</tr>
 			</table>
 	    </c:if>
     </c:if>
     
+    
     <c:if test="${sessionScope.adId != null && sessionScope.adId != ''}">
-	<table border="1" align="center" style="width:95%; height:95%;"> 
+    <form method="post" enctype="multipart/form-data" action="BandBoard_fileUpload.do">
+    <table border="1" align="center" style="width:95%; height:50%;">
+		<tr align="center" style="height:150px;">
+			<th align="center" style="width:40%;"> ${str_download} </th>
+			<td colspan="2">
+				<c:forEach var="file" items="${list}">
+					<a href="BandBoard_fileDownload.do?originName=${file.name}&systemName=${file.name}">
+					${file.name}</a> <br>
+				</c:forEach>
+			</td>
+		</tr>
+		
+		<tr style="height:20%;">
+			<th colspan="3"> &nbsp; </th>
+		</tr>
+		
 		<tr align="center" style="height:80px;">
-			<td align="center">
-			<form method="post" enctype="multipart/form-data" action="BandBoard_fileUpload.do">
-			<table>
-				<tr>
-					<th> 제목 </th>
-					<td> <input class="input" type="text" name="title"> </td>
-				</tr>
-				<tr>
-					<th> 파일 </th>
-					<td> <input class="input" type="file" name="file1"> </td>
-				</tr>
-				<tr>
-					<th colspan="2">
-						<input class="inputbutton" type="submit" value="전송">
-						<input class="inputbutton" type="reset" value="취소">
-					</th>
-				</tr>
-			</table>
-			</form>
+			<th rowspan="2"> ${str_fileadd} </th>
+			<td> <input class="input" type="file" name="file1"> </td>
+		</tr>
+		<tr style="height:40px;">
+			<th colspan="2">
+				<input class="inputbutton" type="submit" value="전송">
+				<input class="inputbutton" type="reset" value="취소">
+			</th>
+		</tr>
+		
+		<tr style="height:20%;">
+			<th colspan="3"> &nbsp; </th>
+		</tr>
+		
+		<tr align="center" style="height:150px;">
+			<th rowspan="3"> ${str_filedel} </th>
+			<td colspan="2">
+				<c:forEach var="file" items="${list}">
+					<a href="BandBoard_fileDownload.do?originName=${file.name}&systemName=${file.name}">
+					${file.name}</a> &nbsp;
+					<a href="BandBoard_fileDelete.do?originName=${file.name}"> 삭제 </a>
+					 <br>
+				</c:forEach>
 			</td>
 		</tr>
 	</table>
+	</form>
 	</c:if>
 	
 	<jsp:include page="footer.jsp" flush="false"/>

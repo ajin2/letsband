@@ -10,12 +10,24 @@
    <jsp:include page="header.jsp" flush="false"/>
    <jsp:include page="menu.jsp" flush="false"/>
    
-   <table border="1" align="center" style="width:95%; height:95%;"> 
-      <tr align="center" style="height:80px;">
-         <td align="center">
-			정보공유   
-   		 </td>
-    </tr>
-   </table>
+   <c:if test="${(sessionScope.memId == null || sessionScope.memId == '') && (sessionScope.adId == null || sessionScope.adId == '')}">
+    <table border="1" align="center" style="width:95%; height:95%;"> 
+		<tr align="center" style="height:80px;">
+			<td align="center">
+			</td>
+		</tr>
+	</table>
+		<!-- // 비회원  > alert 띄운 후 로그인 OR 회원가입 페이지로 이동-->
+        <script type="text/javascript">
+        <!--
+	        var returnValue = confirm(loginpleaseerror);
+	    	if(returnValue == true){
+	    		window.location.href = "BandBoard_main.do";
+	    	} else {
+	    		window.location.href = "BandBoard_main.do";
+	    	}
+        //-->
+        </script>
+    </c:if>
    
    <jsp:include page="footer.jsp" flush="false"/>
