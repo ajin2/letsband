@@ -50,7 +50,7 @@
 				
 				<li><a>
 				      <input type="image" src="${img}download.jpg" style="height:40px; width:130px;" onclick="location='BandBoard_download.do'">
-				      
+				      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				   </a>
 				   
 				<li><a>
