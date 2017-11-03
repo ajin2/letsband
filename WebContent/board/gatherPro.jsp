@@ -12,7 +12,7 @@
 </c:if>
 
 <!-- adminId -->
-<c:if test="${sessionScope.adminId != null}">
+<c:if test="${sessionScope.adId != null}">
 	<c:redirect url="BandBoard_gatherForm.do"/>
 </c:if>
 	
@@ -21,7 +21,7 @@
 
 <!-- null -->
 <c:if test="${sessionScope.memId == null or sessionScope.memId == ''
-	or sessionScope.adminId == null or sessionScope.adminId == ''}">
+	or sessionScope.adId == null or sessionScope.adId == ''}">
 	<script type="text/javascript">
         <!--
            var returnValue = confirm(loginpleaseerror);

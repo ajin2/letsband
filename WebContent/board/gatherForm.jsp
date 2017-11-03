@@ -52,7 +52,7 @@ ${page_gather} (${str_count} : ${count}) </h2>
       <c:forEach var="article" items="${articles}">
       <tr>
          <td align="center">
-            ${number+1}
+            ${number}
             <c:set var="number" value="${number - 1 }"/>
          </td>
          <td align="center">

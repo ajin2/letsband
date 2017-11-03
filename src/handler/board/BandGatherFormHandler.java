@@ -27,7 +27,8 @@ int count = 0;				// 전체글수
 		int startPage = 0;			// 페이지의 시작
 		int endPage = 0;			// 페이지의 끝
 		int pageCount = 0;			// 페이지의 개수
-	
+		int value = 1;
+		
 		BoardDBBean boardDao = BoardDBBean.getInstance();
 		count = boardDao.getCount(1);
 		
@@ -71,7 +72,7 @@ int count = 0;				// 전체글수
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("pageCount", pageCount);
 			
-			ArrayList<BoardDataBean> articles = boardDao.getArticles(start, end);
+			ArrayList<BoardDataBean> articles = boardDao.getArticles(start, end, value);
 			request.setAttribute("articles", articles);
 		}
 		
