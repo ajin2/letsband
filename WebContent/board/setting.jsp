@@ -31,8 +31,8 @@
 	<c:set var="str_passwd" value = "비밀번호"/>
 	<c:set var="str_download" value = "다운로드"/>
 	<c:set var="str_location" value = "위치"/>
-	
-	<c:set var="btn_write" value = "작성"/>
+
+  <c:set var="btn_write" value = "작성"/>
 	<c:set var="btn_cancel" value = "취소"/>
 	<c:set var="btn_list" value = "목록"/>
 	<c:set var="btn_modify" value = "글수정"/>
@@ -43,3 +43,9 @@
 	<c:set var="btn_mod" value = "수정"/>
 	<c:set var="btn_mod_cancel" value = "수정취소"/>
 	<c:set var="btn_back" value = "뒤로가기"/>
+
+	<c:set var="str_file" value="파일" />
+	<c:set var="str_fileadd" value="파일추가" />
+	<c:set var="str_filedel" value="파일삭제" />
+	<c:set var="str_download" value="다운로드"/>
+	<c:set var="btn_mod_cancel" value = "수정취소"/>

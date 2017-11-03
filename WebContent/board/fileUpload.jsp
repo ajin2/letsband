@@ -13,19 +13,8 @@
 	
 	<jsp:include page="menu.jsp" flush="false"/>
 	
-	<h2> 파일업로드 - 처리 페이지 </h2>
+	<c:redirect url="BandBoard_download.do" />
 	
-	경로 : ${path} <br>
-	
-	파일이름 1 : ${originName1} <br>
-	저장이름 1 : ${systemName1} <br>
-	<br>
-	
-	<h2> 파일 다운로드 </h2>
-	
-	파일 : <a href="BandBoard_fileDownload.do?originName=${originName11}&systemName=${systemName11}">
-			${originName1}</a> <br>
-
 
 
 

@@ -16,6 +16,8 @@ public class FileDownloadHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
+		request.setCharacterEncoding("utf-8");
+		
 		String originName = request.getParameter( "originName" );
 		String systemName = request.getParameter( "systemName" );
 		originName = URLDecoder.decode( originName, "utf-8" );

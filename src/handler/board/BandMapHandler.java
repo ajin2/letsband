@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import handler.CommandHandler;
 
-public class MapHandler implements CommandHandler{
+public class BandMapHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Throwable {

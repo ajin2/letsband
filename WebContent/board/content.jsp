@@ -11,6 +11,7 @@
 
 <h2>${page_content}</h2>
 
+
 <table width="700" border="1">
 	<tr>
       <th> ${str_subject} </th>
@@ -29,6 +30,7 @@
             type="both" pattern="yyyy-MM-dd HH:mm"/>
       </td>
    </tr>
+
 	<tr>
       <th > ${str_img} </th>
       <td ></td>
@@ -78,3 +80,4 @@
       </th>
    </tr>
 </c:if>
+
