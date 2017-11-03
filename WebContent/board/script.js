@@ -10,3 +10,7 @@ function erroralert(msg){
 	alert(msg);
 	history.back();
 }
+
+function gatherwritefocus() {
+	gatherwriteform.subject.focus();
+}

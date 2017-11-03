@@ -17,9 +17,7 @@ public class BandContentHandler implements CommandHandler{
 		BoardDBBean boardDao = BoardDBBean.getInstance();
 		BoardDataBean boardDto = boardDao.getArticle(num);
 		
-		// 우리는 IP를 안받는다
-		//if(!request.getRemoteAddr().equals(boardDto.getIp()))
-			boardDao.addCount(num);
+		boardDao.addCount(num);
 		
 		request.setAttribute("boardDto", boardDto);
 		request.setAttribute("pageNum", pageNum);

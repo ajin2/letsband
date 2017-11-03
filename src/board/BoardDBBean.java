@@ -61,7 +61,7 @@ public class BoardDBBean {
 		return count;
 	}
 
-	public ArrayList<BoardDataBean> getArticles(int start, int end) {
+	public ArrayList<BoardDataBean> getArticles(int start, int end, int value) {
 		ArrayList<BoardDataBean> articles = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -72,11 +72,13 @@ public class BoardDBBean {
 			String sql = "select m_id, a_id, num, value, subject, reg_date, readcount, content, r "
 					+ "from (select m_id, a_id, num, value, subject, reg_date, readcount, content, rownum r "
 					+ "from (select m_id, a_id, num, value, subject, reg_date, readcount, content "
-					+ "from band_board order by num desc)) where r >= ? and r <= ?";
+					+ "from band_board where value=? order by num desc)) where r >= ? and r <= ?";
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
+			pstmt.setInt(1, value);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -228,4 +230,55 @@ public class BoardDBBean {
 		return result;
 	}
 
+	public int insertArticle(BoardDataBean boardDto) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try{
+			con = getConnection();
+			
+			int num = boardDto.getNum();
+			String sql = null;
+			
+			if(num == 0) {
+				sql = "select max( num ) from band_board";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+			}
+			
+			sql = "insert into band_board(m_id, a_id, num, subject, reg_date "
+					+ "content) value(?, ?, band_board_seq.NEXTVAL, "
+					+ "?, ?, ?, ?)";
+			
+			pstmt.close();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,  boardDto.getM_id());
+			pstmt.setString(2, boardDto.getM_id());
+			pstmt.setString(3, boardDto.getSubject());
+			pstmt.setTimestamp(4, boardDto.getReg_date());
+			pstmt.setString(5, boardDto.getContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if( rs != null ) rs.close();
+				if( pstmt != null ) pstmt.close();
+				if( con != null ) con.close();				
+			} catch( SQLException e ) {
+				e.printStackTrace();
+			}
+		}		
+		return result;
+	}
+	
+	
+	
 }

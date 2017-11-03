@@ -12,6 +12,7 @@ public class BoardDataBean {
 	private Timestamp reg_date;
 	private int readcount;
 	private String content;
+	private String location;
 	
 	public String getM_id() {
 		return m_id;
@@ -37,6 +38,9 @@ public class BoardDataBean {
 	public String getContent() {
 		return content;
 	}
+	public String getLocation() {
+		return location;
+	}
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
@@ -60,5 +64,8 @@ public class BoardDataBean {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }
