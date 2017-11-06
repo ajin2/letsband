@@ -15,20 +15,44 @@ public class BandGatherWriteProHandler implements CommandHandler {
 		
 		request.setCharacterEncoding("utf-8");
 		
+		String memId = (String) request.getSession().getAttribute("memId");
+		String adId = (String) request.getSession().getAttribute("adId");
+		
+		// write text data
 		BoardDataBean boardDto = new BoardDataBean();
-		boardDto.setM_id(request.getParameter("m_id"));
-		boardDto.setA_id(request.getParameter("a_id"));
-		boardDto.setNum(Integer.parseInt(request.getParameter("num")));
+		boardDto.setM_id(memId);
+		boardDto.setA_id(adId);
 		boardDto.setValue(Integer.parseInt(request.getParameter("value")));
 		boardDto.setSubject(request.getParameter("subject"));
 		boardDto.setReg_date(new Timestamp(System.currentTimeMillis()));
-		boardDto.setReadcount(Integer.parseInt(request.getParameter("readcount")));
+		boardDto.setContent(request.getParameter("content"));
 		boardDto.setLocation(request.getParameter("location"));
+		
+		// if the session died
+		if((adId == null || adId.equals("")) && (memId == null || memId.equals("")) ) {
+			return "/board/gatherWritePro.jsp";
+		}
 		
 		BoardDBBean boardDao = BoardDBBean.getInstance();
 		int result = boardDao.insertArticle(boardDto);
-		
 		request.setAttribute("result", result);
+		
+		// write file data
+		/*String path = application.getRealPath("/bandsave");
+		new File(path).mkdir();
+		MultipartRequest multi = new MultipartRequest(request, path, 
+				1024*1024*5, "utf-8", new DefaultFileRenamePolicy());
+		String originName1 = multi.getOriginalFileName("load1");
+		String systemName1 = multi.getFilesystemName("load1");
+		
+		FileDataBean fileDto = new FileDataBean();
+		fileDto.setF_id(Integer.parseInt(request.getParameter("f_id")));
+		fileDto.setOri(originName1);
+		fileDto.setSys(systemName1);
+		fileDto.setF_size(Integer.parseInt(request.getParameter("f_size")));
+		
+		int fileresult = boardDao.insertFile(fileDto);
+		request.setAttribute("fileresult", fileresult);*/
 		
 		return "/board/gatherWritePro.jsp";
 	}

@@ -5,11 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import handler.CommandHandler;
 
-public class BandGatherProHandler implements CommandHandler{
-      
+public class BandContentDeleteAlertHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
-		return "/board/gatherPro.jsp";
+		return "/board/contentDeleteAlert.jsp";
 	}
 }

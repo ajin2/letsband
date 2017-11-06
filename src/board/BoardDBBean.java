@@ -61,6 +61,45 @@ public class BoardDBBean {
 		return count;
 	}
 
+	public int getReplyCount(int num) {
+		int replyCount = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			String sql = "select (select count(*) from band_reply where num=?) + "
+					+ "(select count(*) from Band_board b, Band_reply r, Band_rreply rr "
+					+ "where b.num = ? and b.num = r.num and r.re_num = rr.re_num) "
+					+ "replycount from dual";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				replyCount = rs.getInt(1);
+			}
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return replyCount;
+	}
+
+	
 	public ArrayList<BoardDataBean> getArticles(int start, int end, int value) {
 		ArrayList<BoardDataBean> articles = null;
 		Connection con = null;
@@ -69,9 +108,9 @@ public class BoardDBBean {
 
 		try {
 			con = getConnection();
-			String sql = "select m_id, a_id, num, value, subject, reg_date, readcount, content, r "
-					+ "from (select m_id, a_id, num, value, subject, reg_date, readcount, content, rownum r "
-					+ "from (select m_id, a_id, num, value, subject, reg_date, readcount, content "
+			String sql = "select m_id, a_id, num, value, subject, reg_date, readcount, content, location, r "
+					+ "from (select m_id, a_id, num, value, subject, reg_date, readcount, content, location, rownum r "
+					+ "from (select m_id, a_id, num, value, subject, reg_date, readcount, content, location "
 					+ "from band_board where value=? order by num desc)) where r >= ? and r <= ?";
 
 			pstmt = con.prepareStatement(sql);
@@ -93,7 +132,9 @@ public class BoardDBBean {
 					article.setReg_date(rs.getTimestamp("reg_date"));
 					article.setReadcount(rs.getInt("readcount"));
 					article.setContent(rs.getString("content"));
-
+					article.setLocation(rs.getString("location"));
+					//article.setReplyCount(getReplyCount(rs.getInt("num")));
+					
 					articles.add(article);
 				} while (rs.next());
 			}
@@ -139,6 +180,7 @@ public class BoardDBBean {
 				article.setReg_date(rs.getTimestamp("reg_date"));
 				article.setReadcount(rs.getInt("readcount"));
 				article.setContent(rs.getString("content"));
+				article.setLocation(rs.getString("location"));
 			}
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -230,9 +272,6 @@ public class BoardDBBean {
 		return result;
 	}
 	
-	
-
-
 	public int insertArticle(BoardDataBean boardDto) {
 		int result = 0;
 		Connection con = null;
@@ -241,17 +280,58 @@ public class BoardDBBean {
 		
 		try{
 			con = getConnection();
-			
 			int num = boardDto.getNum();
 			String sql = null;
+			if(num == 0) {
+				sql = "select max(num) from band_board";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+			}
+			sql = "insert into band_board(m_id, a_id, num, value, subject, reg_date, "
+					+ "content, location) values(?, ?, band_board_seq.NEXTVAL,?, ?, ?, ?, ?)";
 			
+			pstmt.close();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, boardDto.getM_id());
+			pstmt.setString(2, boardDto.getA_id());
+			pstmt.setInt(3, boardDto.getValue());
+			pstmt.setString(4, boardDto.getSubject());
+			pstmt.setTimestamp(5, boardDto.getReg_date());
+			pstmt.setString(6, boardDto.getContent());
+			pstmt.setString(7, boardDto.getLocation());
+			
+			result = pstmt.executeUpdate();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if( rs != null ) rs.close();
+				if( pstmt != null ) pstmt.close();
+				if( con != null ) con.close();				
+			} catch( SQLException e ) {
+				e.printStackTrace();
+			}
+		}		
+		return result;
+	}
+	
+	/*public int insertFile(FileDataBean fileDto) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try{
+			con = getConnection();
+			int num = boardDto.getNum();
+			String sql = null;
 			if(num == 0) {
 				sql = "select max( num ) from band_board";
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
-				
 			}
-			
 			sql = "insert into band_board(m_id, a_id, num, subject, reg_date "
 					+ "content) value(?, ?, band_board_seq.NEXTVAL, "
 					+ "?, ?, ?, ?)";
@@ -279,9 +359,65 @@ public class BoardDBBean {
 				e.printStackTrace();
 			}
 		}		
+		
+		return result;
+	}	
+	*/
+	public int deleteArticle(int num) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			
+			String sql = "delete from band_board where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if( rs != null ) rs.close();
+				if( pstmt != null ) pstmt.close();
+				if( con != null ) con.close();				
+			} catch( SQLException e ) {
+				e.printStackTrace();
+			}
+		}			
 		return result;
 	}
 	
-	
-	
+	public int updateArticle(BoardDataBean boardDto) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = getConnection();
+			String sql = "update band_board set subject=?, content=?, "
+					+ "location=? where num=?";
+			pstmt = con.prepareStatement( sql );
+			pstmt.setString( 1, boardDto.getSubject());
+			pstmt.setString( 2, boardDto.getContent());
+			pstmt.setString( 3, boardDto.getLocation());
+			pstmt.setInt( 4, boardDto.getNum());
+			
+			result = pstmt.executeUpdate();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if( pstmt != null ) pstmt.close();
+				if( con != null ) con.close();				
+			} catch( SQLException e ) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 }

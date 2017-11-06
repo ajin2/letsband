@@ -12,6 +12,7 @@ public class BoardDataBean {
 	private int readcount;
 	private String content;
 	private String location;
+	private int replycount;
 	
 	public String getM_id() {
 		return m_id;
@@ -40,6 +41,11 @@ public class BoardDataBean {
 	public String getLocation() {
 		return location;
 	}
+	public int getReplyCount() {
+		return replycount;
+	}
+	
+	
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
@@ -66,5 +72,8 @@ public class BoardDataBean {
 	}
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	public void setReplyCount(int replycount) {
+		this.replycount = replycount;
 	}
 }

@@ -16,15 +16,12 @@
 	<c:redirect url="BandBoard_gatherForm.do"/>
 </c:if>
 	
-
-
-
 <!-- null -->
 <c:if test="${sessionScope.memId == null or sessionScope.memId == ''
 	or sessionScope.adId == null or sessionScope.adId == ''}">
 	<script type="text/javascript">
         <!--
-           var returnValue = confirm(loginpleaseerror);
+           var returnValue = alert(loginpleaseerror);
            if(returnValue == true){
               window.location.href = "BandBoard_main.do";
            } else {

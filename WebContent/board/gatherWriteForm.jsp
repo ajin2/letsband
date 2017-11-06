@@ -17,32 +17,35 @@
 <div class="container">
 <body onload="gatherwritefocus()">
 	<form method="post" action="BandBoard_gatherWritePro.do" 
-		name="gatherwriteform">
-
-		<input type="hidden" name="num" value="${num }">
+		name="gatherwriteform" onsubmit="return gatherwritecheck()">
+<!-- enctype="multipart/form-data" -->
 		<input type="hidden" name="value" value="1">
 		<h2>${page_write }</h2>
 
 		<div class="form-group">
 			<label for="subject">${str_writer}</label> &nbsp;
 		<c:if test="${sessionScope.memId != null or sessionScope.memId != ''}">
-        	${sessionScope.memId}	
+        	${sessionScope.memId} 
         </c:if>
 		<c:if test="${sessionScope.adId != null or sessionScope.adId != ''}">
         	${sessionScope.adId}	
         </c:if>
 		</div>
+		
 		<div class="form-group">
 			<label for="subject">${str_subject}</label> 
 			<input type="text" class="form-control" id="subject" name="subject" value="">
 		</div>
+		
 		<div class="form-group">
 			<label for="content">${str_content}</label>
 			<textarea class="form-control" id="content" name="content" rows="3"></textarea>
 		</div>
+		
 		<label for="subject">첨부파일</label> 
-		<input type="file" class="form-control" id="laod" name="load" value="">
+		<input type="file" class="form-control" id="load1" name="load1" value="">
 		<br>
+		
 		<!-- Daum 지도 API -->
 		<div class="form-group">
 			<label for="subject">${str_location}</label> 

@@ -4,32 +4,26 @@
 <%@ include file="setting.jsp" %>
 <script src="${project}board/script.js"></script>
 
-<h2> gatherWritePro </h2>
 
 <c:if test="${result == 0}">
-result == 0
 	<script type="text/javascript">
-		
+		<!--
 		erroralert(modifyerror);
-		
+		//-->
 	</script>
-	<meta http-equiv="refresh" content="0; BandBoard_gatherForm.do?pageNum=${pageNum}">
+	<meta http-equiv="refresh" content="0; BandBoard_contentModifyForm.do?num=${num}">
 </c:if>
+
 <c:if test="${result == 1}">
-	<!-- memId -->
-	<c:if test="${sessionScope.memId != null}">
-		<c:redirect url="BandBoard_gatherForm.do"/>
-	</c:if>
-	
-	<!-- adminId -->
-	<c:if test="${sessionScope.adId != null}">
-		<c:redirect url="BandBoard_gatherForm.do"/>
+	<!-- memId and adId -->
+	<c:if test="${sessionScope.memId != null or sessionScope.adId != null}">
+		<c:redirect url="BandBoard_gatherContent.do?num=${num}&pageNum=${pageNum}"/>
 	</c:if>
 </c:if>
+
 <!-- null -->
 <c:if test="${(sessionScope.memId == null or sessionScope.memId == '')
 	and (sessionScope.adId == null or sessionScope.adId == '')}">
-null 값
 	<script type="text/javascript">
         <!--
            var returnValue = confirm(loginpleaseerror);
@@ -41,3 +35,6 @@ null 값
         -->
         </script>
 </c:if>
+
+ 
+   

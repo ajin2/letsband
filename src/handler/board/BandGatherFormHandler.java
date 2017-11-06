@@ -14,7 +14,7 @@ public class BandGatherFormHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 	
-int count = 0;				// 전체글수
+		int count = 0;				// 전체글수
 		
 		int pageBlock = 3;
 		int pageSize = 5;			// 한 페이지에 출력할 글의 수
@@ -29,9 +29,10 @@ int count = 0;				// 전체글수
 		int pageCount = 0;			// 페이지의 개수
 		int value = 1;
 		
+		int replycount = 0;			// 댓글 갯수
+		
 		BoardDBBean boardDao = BoardDBBean.getInstance();
 		count = boardDao.getCount(1);
-		
 		request.setAttribute( "count", count );
 		
 		if( count > 0 ) {
@@ -74,9 +75,10 @@ int count = 0;				// 전체글수
 			
 			ArrayList<BoardDataBean> articles = boardDao.getArticles(start, end, value);
 			request.setAttribute("articles", articles);
-		}
-		
+			
+			//replycount = boardDao.getReplyCount();
+			request.setAttribute("replycount", replycount);	
+		}	
 		return "/board/gatherForm.jsp";
 	}
-
 }
