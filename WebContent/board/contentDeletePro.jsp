@@ -6,14 +6,14 @@
  
 <c:if test="${result == 1}">
     <!-- // 삭제 성공 -->
-    <c:redirect url="BandBoard_gatherPro.do?pageNum=${pageNum}"/>	
+    <c:redirect url="BandBoard_gatherPro.do?pageNum=${pageNum}"/>   
   </c:if>
   
   <c:if test="${result == 0}">
   <!-- // 삭제 실패 -->
       <script type="text/javascript">
       <!--
-      	erroralert(delete_content_no);
+         erroralert(delete_content_no);
       //-->
       </script>
   </c:if>

@@ -1,13 +1,13 @@
 package board;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ReplyDataBean {
 	private int num;
 	private String m_id;
 	private String a_id;
 	private int re_num;
-	private Date reg_date;
+	private Timestamp reg_date;
 	private String reply;
 	
 	public int getNum() {
@@ -22,7 +22,7 @@ public class ReplyDataBean {
 	public int getRe_num() {
 		return re_num;
 	}
-	public Date getReg_date() {
+	public Timestamp getReg_date() {
 		return reg_date;
 	}
 	public String getReply() {
@@ -40,7 +40,7 @@ public class ReplyDataBean {
 	public void setRe_num(int re_num) {
 		this.re_num = re_num;
 	}
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
 	public void setReply(String reply) {

@@ -12,14 +12,14 @@
     	
     	<c:if test="${result == 1}">
     		<!--  아이디가 있음 + 비밀번호 맞음 -->
-    		${sessionScope.memId = id}
-    		<c:redirect url="BandBoard_main.do"/>
+    		${sessionScope.memId = m_id}
+    		<c:redirect url="BandBoard_main.do" />
     	</c:if> 
     	
     	<c:if test="${aresult == 1}">
     		<!--  아이디가 있음 + 비밀번호 맞음 -->
-    		${sessionScope.adId = id}
-    		<c:redirect url="BandBoard_main.do"/>
+    		${sessionScope.adId = a_id}
+    		<c:redirect url="BandBoard_main.do" />
     	</c:if> 
     	
     	<c:if test="${result == -1 or aresult == -1}">
@@ -27,6 +27,7 @@
     		<script type="text/javascript">
     		<!--
     			erroralert(loginpasserror);
+    			window.location.href="Band_Logon_loginForm.do";
     		//-->
     		</script>
     	</c:if>
@@ -36,6 +37,7 @@
     		<script type="text/javascript">
     		<!--
     			erroralert(loginiderror);
+    			window.location.href="Band_Logon_loginForm.do";
     		//-->
     		</script>
     	</c:if>

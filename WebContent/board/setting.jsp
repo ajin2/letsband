@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -7,7 +8,7 @@
     
     <c:set var="img" value="/LetsBand/board/img/"/>
 	
-	<c:set var="page_main" value="Let's Band Cafe"/>
+	<c:set var="page_main" value="LetsBand"/>
 	<c:set var="page_list" value = "글  목  록"/>
 	<c:set var="page_write" value = "글  작  성"/>
 	<c:set var="page_content" value = "글  보  기"/>
@@ -29,10 +30,10 @@
 	<c:set var="str_email" value = "이메일"/>
 	<c:set var="str_content" value = "글내용"/>
 	<c:set var="str_passwd" value = "비밀번호"/>
-	<c:set var="str_download" value = "다운로드"/>
 	<c:set var="str_location" value = "위치"/>
-
-  <c:set var="btn_write" value = "작성"/>
+	<c:set var="str_title" value="제목"/>
+	
+	<c:set var="btn_write" value = "작성"/>
 	<c:set var="btn_cancel" value = "취소"/>
 	<c:set var="btn_list" value = "목록"/>
 	<c:set var="btn_modify" value = "글수정"/>
@@ -48,4 +49,3 @@
 	<c:set var="str_fileadd" value="파일추가" />
 	<c:set var="str_filedel" value="파일삭제" />
 	<c:set var="str_download" value="다운로드"/>
-	<c:set var="btn_mod_cancel" value = "수정취소"/>

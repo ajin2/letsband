@@ -1,32 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<%@ include file="setting.jsp"%>
-	<link href="${project}member/style.css" rel="stylesheet"
-	   type="text/css">
-	<script src="${project}member/script.js"></script>
-	
-	
-	 <h2> ${page_modify}</h2>
-	 <body onload="passwdfocus()">
-	    <form name="passwdform" method="post" action="Band_Logon_modifyView.do" onsubmit="return passwdcheck()">
-	       <table border="1">
-	          <tr>
-	             <th colspan="2">
-	                ${msg_passwd}
-	             </th>
-	          </tr>
-	          <tr>
-	             <th> ${str_passwd}</th>
-	             <td>
-	                <input class="input" type="password" name="passwd" maxlength="15">
-	             </td>
-	          </tr>
-	          <tr>
-	             <th colspan="2">   
-	                <input class="inputbutton" type="submit" value="${btn_mod}">
-	                <input class="inputbutton" type="button" value="${btn_mod_cancel}" onclick="location='BandBoard_main.do'">
-	             </th>
-	          </tr>
-	       </table>
-	    </form>
-	 </body>
+   <%@ include file="setting.jsp"%>
+   <link href="${project}member/style.css" rel="stylesheet"
+      type="text/css">
+   <script src="${project}member/script.js"></script>
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+<style type="text/css">
+
+div #b{
+margin-left:15%;
+}
+</style>
+
+<body onload="passwdfocus()">
+<form class="form-horizontal" name="passwdform" method="post" action="Band_Logon_modifyView.do" onsubmit="return passwdcheck()">
+    
+    <div class="col-md-12">   
+       <div class="page-header">
+          <h1 align="center"> ${page_modify} <small>LetsBand</small> </h1>
+       </div>    
+       
+
+       <div class="form-group">
+         <label class="col-sm-3 control-label" for="inputpasswd" id="b">${str_passwd}</label>
+      <div class="col-sm-2">
+         <input class="form-control"  type="password" name="passwd" placeholder="비밀번호" autofocus>
+      </div>
+      </div>
+      
+       <br>
+       <div class="form-group">
+          <div class="col-sm-12 text-center">
+            <button class="btn btn-primary" type="submit">${btn_mod}</button>
+            <button class="btn btn-primary" type="button" onclick="location='BandBoard_main.do'">${btn_mod_cancel}</button>
+          </div>
+        </div>
+      
+       
+     </div>
+      </form>
+</body>

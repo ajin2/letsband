@@ -28,7 +28,6 @@ var delete_ok_error = "회원탈퇴가 성공적으로 완료되었습니다. \n
 var deleteconfirm = "회원을 탈퇴하시겠습니까?";
 var returnValue = "false";
 
-
 function erroralert(msg){
 	alert(msg);
 	history.back();
@@ -105,15 +104,15 @@ function sample2_execDaumPostcode() {
 }
 
 function initLayerPosition(){
-    var width = 300; //우편번호서비스가 들어갈 element의 width
-    var height = 400; //우편번호서비스가 들어갈 element의 height
-    var borderWidth = 5; //샘플에서 사용하는 border의 두께
+    var width = 400; //우편번호서비스가 들어갈 element의 width
+    var height = 600; //우편번호서비스가 들어갈 element의 height
+    var borderWidth = 2; //샘플에서 사용하는 border의 두께
 
     element_layer.style.width = width + 'px';
     element_layer.style.height = height + 'px';
     element_layer.style.border = borderWidth + 'px solid';
-    element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
-    element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+    element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/1.1 - borderWidth) + 'px';
+    element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/4 - borderWidth) + 'px';
 }
 
 function closeDaumPostcode() {
@@ -169,32 +168,6 @@ function viewcheck(viewemail1, viewemail2){
 
 ////////////////////////////////////////////////////////////////////////////////// 이메일
 function emailcheck(email1, email2, emailvalue){
-	if(!inputform.email1.value){
-		alert(emailerror);
-		inputform.email1.focus();
-		return false;
-	} 
-	if(!inputform.email1.value || !inputform.email2.value){ 
-		alert(emailerror);
-		inputform.email1.focus();
-		return;
-	} if(inputform.email1.value){
-			if(inputform.email2.value==0){
-				// 직접입력
-				if(inputform.email1.value.indexOf("@")==-1){
-					alert(emailerror);
-					inputform.email1.focus();
-					return false;
-				}
-			}else{
-				// 선택입력
-				if(inputform.email1.value.indexOf("@")!=-1){
-					alert(emailerror);
-					inputform.email1.focus();
-					return false;
-				}
-			}
-		}
     // 인증을 위해 새창으로 이동
 	var url="Band_Logon_emailcheck.do?email1="+email1+"&email2="+email2+"&emailvalue="+emailvalue;
 	open(url,"emailwindow", "statusbar=no, scrollbar=no, menubar=no, width=600, height=400" );

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import handler.CommandHandler;
 import member.LogonDBBean;
 import member.LogonDataBean;
-
+ 
 public class LogonFindIdProHandler implements CommandHandler{
 
 	@Override
