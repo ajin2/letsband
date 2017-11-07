@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import board.BoardDBBean;
 import board.BoardDataBean;
 import handler.CommandHandler;
-
+  
 public class BandContentModifyFormHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Throwable {

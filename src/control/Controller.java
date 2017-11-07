@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import handler.CommandHandler;
 import handler.DefaultHandler;
-
+ 
 public class Controller extends HttpServlet{
 	
 	private Map<String, CommandHandler> handlerMap = new HashMap<String, CommandHandler>();

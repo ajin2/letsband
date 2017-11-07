@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import board.BoardDBBean;
 import board.BoardDataBean;
 import handler.CommandHandler;
-
+ 
 public class BandGatherFormHandler implements CommandHandler{
 
 	@Override

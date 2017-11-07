@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import handler.CommandHandler;
 import member.EmailConfirm;
-
+ 
 public class LogonEmailCheckHandler implements CommandHandler{
 
 	@Override

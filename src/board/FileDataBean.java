@@ -6,7 +6,7 @@ public class FileDataBean {
 	private String ori;
 	private String sys;
 	private int f_size;
-	
+ 	
 	public int getNum() {
 		return num;
 	}

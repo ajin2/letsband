@@ -1,5 +1,5 @@
 package board;
-
+ 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -227,7 +227,7 @@ public class BoardDBBean {
 		}
 	}
 
-	// �궗�슜�옄媛��씤吏� �븘�땶吏� �뙋�떒�븯�뒗 Query Method
+	// 사용자가인지 아닌지 판단하는 Query Method
 	public int check(String id) {
 		int result = 0;
 		Connection con = null;
@@ -420,4 +420,160 @@ public class BoardDBBean {
 		}
 		return result;
 	}
+	public int insertReply(ReplyDataBean replyDto) {
+		int result = 0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = getConnection();
+			String sql = "insert into Band_reply(m_id, a_id, num, re_num, reg_date, reply) values(?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, replyDto.getM_id());
+			pstmt.setString(2, replyDto.getA_id());
+			pstmt.setInt(3, replyDto.getNum());
+			pstmt.setInt(4,replyDto.getRe_num());
+			pstmt.setTimestamp(5, replyDto.getReg_date());
+			pstmt.setString(6, replyDto.getReply());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	public int getRe_Num() {
+		int re_num = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			String sql = "select MAX(re_num) from Band_reply";
+
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				re_num = rs.getInt("MAX(re_num)");
+			} 
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return re_num;
+	}
+	
+	public int getReplyOX(int num) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			String sql = "select count(*) from Band_reply where num in ("
+						+ "select num from Band_board where num=?)";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				if(rs.getInt("count(*)") > 0) {
+					result = 1;
+				} else {
+					result = 0;
+				}
+			} 
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public ArrayList<ReplyDataBean> getReply(int num) {
+		ArrayList<ReplyDataBean> replys = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = getConnection();
+			String sql = "select * from Band_reply where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				replys = new ArrayList<ReplyDataBean>();
+				do {
+					ReplyDataBean reply = new ReplyDataBean();
+					reply = new ReplyDataBean();
+					reply.setM_id(rs.getString("m_id"));
+					reply.setA_id(rs.getString("a_id"));
+					reply.setNum(rs.getInt("num"));
+					reply.setReg_date(rs.getTimestamp("reg_date"));
+					reply.setReply(rs.getString("reply"));
+
+					replys.add(reply);
+				} while (rs.next());
+			}
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return replys;
+	}
+	
 }

@@ -2,41 +2,52 @@
     pageEncoding="UTF-8"%>
 
     <%@ include file="setting.jsp" %>
-	<script src="${project}member/script.js"></script>
+   <script src="${project}member/script.js"></script>
 
-    <h2> ${page_findPasswd}</h2>
-	
-	<body onload="findpfocus()">
-		<form method="post" name="findform" action="Band_Logon_findPasswdView.do" onsubmit="return findpcheck()">
-			<table border="1">
-				<tr>
-					<th colspan="2"> ${msg_find} </th>
-				</tr>
-				<tr>
-					<th> ${str_id} </th>
-					<td>
-						<input class="input" type="text" name="id" maxlength="15">  
-					</td>
-				</tr>
-				<tr>
-					<th> ${str_name} </th>
-					<td>
-						<input class="input" type="text" name="name" maxlength="30">
-					</td>
-				</tr>
-				<tr>
-					<th> ${str_email} </th>
-					<td>
-						<input class="input" type="text" name="email" maxlength="30">  
-					</td>
-				</tr>
-				<tr>
-					<th colspan="2">
-						<input class="inputbutton" type="submit" value="${btn_find}">
-						<input class="inputbutton" type="reset" value="${btn_cancel}">
-						<input class="inputbutton" type="button" value="${btn_find_cancel}" onclick="location='BandBoard_main.do'">
-					</th>
-				</tr>
-			</table>
-		</form>
-	</body>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+<style type="text/css">
+div #c{
+margin-left:15%;
+}
+</style>
+   
+   <body onload="findpfocus()">
+   <div class="col-md-12">
+      <div class="page-header">
+         <h1 align="center"> ${page_findPasswd} <small>LetsBand</small> </h1>
+      </div>
+      <form class="form-horizontal" method="post" name="findform" action="Band_Logon_findPasswdView.do" onsubmit="return findpcheck()">
+      <div class="form-group">
+         <label class="col-sm-3 control-label" id="c">${str_id}</label>
+      <div class="col-sm-2">
+         <input type="text" class="form-control" name="id" placeholder="아이디" autofocus>
+      </div>
+      </div>
+      <div class="form-group">
+         <label class="col-sm-3 control-label" for="inputname" id="c">${str_name}</label>
+      <div class="col-sm-2">
+         <input type="text" class="form-control" name="name" placeholder="이름">
+      </div>
+      </div>
+      <div class="form-group">
+         <label class="col-sm-3 control-label" for="inputEmail" id="c">${str_email}</label>
+      <div class="col-sm-2">
+         <input type="text" class="form-control" name="email" placeholder="이메일">
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="form-group">
+         <div class="col-sm-12 text-center">
+            <button class="btn btn-primary" type="submit">${btn_find}</button>
+            <button class="btn btn-primary" type="reset">${btn_cancel}</button>
+             <button class="btn btn-primary" type="button" onclick="location='BandBoard_main.do'">${btn_find_cancel}</button>
+         </div>
+      </div>
+      </div>
+      </form>
+      </div>
+   </body>

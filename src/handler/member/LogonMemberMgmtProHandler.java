@@ -7,7 +7,7 @@ import handler.CommandHandler;
 import member.LogonDBBean;
 
 public class LogonMemberMgmtProHandler implements CommandHandler{
-
+ 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");

@@ -1,7 +1,7 @@
 package board;
 
 import java.sql.Timestamp;
-
+ 
 public class BoardDataBean {
 	private String m_id;
 	private String a_id;
